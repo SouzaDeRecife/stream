@@ -3,11 +3,17 @@
 <html>
 <head>
   <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-  <title>Hello, World!</title>
+  <title>leitordecamera</title>
 </head>
 <body>
-  <h1>
-    Hello, World!
-  </h1>
+
+  <video id="camera" width= 200px autoplay= true></video>
+
+  <script src= "https://100.81.251.242:8080" type= text/javascript></script>
+  
+  <script>
+    var video= document.queryselector("#camera");
+    stream(video);
+  </script>
 </body>
 </html>
