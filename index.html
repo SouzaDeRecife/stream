@@ -6,15 +6,29 @@
   <title>leitordecamera</title>
 </head>
 <body>
-
-  <video id="camera" width= 400px autoplay= true></video>
-
   <script>
-    video.src="rtsp://100.84.85.25.1578/souza";
-  </script>
-  
-  <script>
-    var video= document.queryselector("#camera");
+const video = document.querySelector('video');
+const mediaSource = new MediaSource();
+
+video.src = URL.createObjectURL(mediaSource);
+
+mediaSource.addEventListener('sourceopen', async () => {
+  const sourceBuffer = mediaSource.addSourceBuffer('video/webm; codecs="vp8, vorbis"');
+  const response = await fetch('https://www.example.com/video.webm');
+  const reader = response.body.getReader();
+
+  async function streamVideo() {
+    let done = false;
+    while (!done) {
+      const { value, done: readerDone } = await reader.read();
+      if (value) sourceBuffer.appendBuffer(value);
+      done = readerDone;
+    }
+    mediaSource.endOfStream();
+  }
+
+  streamVideo();
+});ment.queryselector("#camera");
     stream(video);
   </script>
 </body>
