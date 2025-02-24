@@ -14,7 +14,7 @@ video.src = URL.createObjectURL(mediaSource);
 
 mediaSource.addEventListener('sourceopen', async () => {
   const sourceBuffer = mediaSource.addSourceBuffer('video/webm; codecs="vp8, vorbis"');
-  const response = await fetch('rtsp://100.83.84.25.1578/souza');
+  const response = await fetch('rtsp://100.75.37.29.1578/souza');
   const reader = response.body.getReader();
 
   async function streamVideo() {
